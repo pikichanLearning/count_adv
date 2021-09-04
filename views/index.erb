@@ -7,12 +7,33 @@
     <link rel="stylesheet" href="/assets/css/count.css">
   </head>
   <body>
-    <h1><%= @number %></h1>
-    <form action="/plus" method="post">
+    <% @numbers.each do |number| %>
+    <% if number.number % 15 == 0 %>
+    <h1 class="color_15"><%= number.number %></h1>
+    <% elsif number.number % 5 == 0 && number.number >= 30 && number.number < 40 %>
+    <h1 class="color_5ling"><%= number.number %></h1>
+    <% elsif number.number % 5 == 0 %>
+    <h1 class="color_5"><%= number.number %></h1>
+    <% elsif number.number % 3 == 0 %>
+    <h1 class="color_3"><%= number.number %></h1>
+    <% elsif number.number % 10 == 3 ||( number.number >= 30 && number.number < 40 ) %>
+    <h1 class="color_3ling"><%= number.number %></h1>
+    <% else %>
+    <h1><%= number.number %></h1>
+    <% end %>
+    <form action="/plus/<%= number.id %>" method="post">
       <input type="submit" value="+">
     </form>
-    <form action="/minus" method="post">
+    <form action="/minus/<%= number.id %>" method="post">
       <input type="submit" value="-">
+    </form>
+    <form action='/clear/<%= number.id %>' method="post">
+      <input type="submit" value="clear">
+    </form>
+    <br>
+    <% end %>
+    <form action='/new' method="post">
+      <input type="submit" value="new_counter">
     </form>
   </body>
 </html>
