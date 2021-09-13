@@ -8,15 +8,17 @@
   </head>
   <body>
     <% @numbers.each do |number| %>
-    <% if number.number % 15 == 0 %>
+    <% if number.number == 0 %>
+    <h1><%= number.number %></h1>
+    <% elsif number.number % 15 == 0 %>
     <h1 class="color_15"><%= number.number %></h1>
-    <% elsif number.number % 5 == 0 && number.number >= 30 && number.number < 40 %>
+    <% elsif number.number % 5 == 0 && number.number.to_s.include?("3") %>
     <h1 class="color_5ling"><%= number.number %></h1>
     <% elsif number.number % 5 == 0 %>
     <h1 class="color_5"><%= number.number %></h1>
     <% elsif number.number % 3 == 0 %>
     <h1 class="color_3"><%= number.number %></h1>
-    <% elsif number.number % 10 == 3 ||( number.number >= 30 && number.number < 40 ) %>
+    <% elsif number.number % 10 == 3 ||( number.number.to_s.include?("3") ) %>
     <h1 class="color_3ling"><%= number.number %></h1>
     <% else %>
     <h1><%= number.number %></h1>
